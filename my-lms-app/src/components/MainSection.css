@@ -8,3 +8,8 @@
     display:flex;
     flex-direction: row;
 }
+
+.testimonials {
+    display:flex;
+    flex-direction: row;
+}
