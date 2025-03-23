@@ -7,7 +7,7 @@ function Header() {
             <img src={logo} />
             <a href='/'>Home</a>
             <a>Courses</a>
-            <a>Login</a>
+            <a href='/Login'>Login</a>
         </div>
     );
 }
