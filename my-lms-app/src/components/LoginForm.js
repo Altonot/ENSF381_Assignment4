@@ -1,12 +1,59 @@
 import './LoginForm.css';
+import React, { useState, useEffect } from 'react';
 
 function LoginForm() {
+    const [data, setData] = useState([]);
+    const [user, setUser] = useState(null);
+    const [pass, setPass] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        fetch('https://jsonplaceholder.typicode.com/users')
+            .then((response) => response.json())
+            .then((result) => {
+                setData(result);
+                setIsLoading(false);
+            })
+            .catch((error) => {
+                console.error('Error fetching data:', error); 
+                setIsLoading(false);
+            });
+    }, []);
+
+    function handleSubmit() {
+        if (isLoading) {
+            return;
+        }
+
+        let valid = 0;
+
+        for(let i = 0; i < data.length; i++){
+            let {username, email} = data[i];
+            if(username == user){
+                if(email == pass){
+                    valid = 1;
+                }
+            }
+        }
+    
+        if(valid == 1){
+            
+        }
+    }
+
+    function navigateToCourses(){
+        //Wait 2 seconds
+        //window.location.href = '/courses';
+    }
+
     return (
-        <div>
-            <input type='text' id='user' name='username' placeholder='Input Username...' required />
-            <input type='password' id='pass' name='password' placeholder='Input Password...' required />
-            <button id='login'>Login</button>
-            <a>Forgot Password?</a>
+        <div className='login'>
+            <form onSubmit={handleSubmit}>
+                <input type='text' value={user} name='username' placeholder='Input Username...' onChange={(e) => setUser(e.target.value)} required />
+                <input type='password' value={pass} name='password' placeholder='Input Password...' minLength='8' onChange={(e) => setPass(e.target.value)} required />
+                <button type='submit'>Login</button>
+            </form>
+            <a href="">Forgot Password?</a>
         </div>
     );
 }
