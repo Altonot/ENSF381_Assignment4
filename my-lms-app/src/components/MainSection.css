@@ -9,7 +9,25 @@
     flex-direction: row;
 }
 
+.courses div{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.courses img{
+    max-width: 100%;
+}
+
 .testimonials {
     display:flex;
     flex-direction: row;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.testimonials div{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
 }
